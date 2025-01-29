@@ -23,7 +23,7 @@ function PredictPlantLeaf() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:5000/predict",
+        "https://f702-36-80-138-225.ngrok-free.app/predict",
         formData,
         {
           headers: {
