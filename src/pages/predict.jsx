@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 function PredictPlantLeaf() {
   const [image, setImage] = useState(null);
@@ -7,9 +9,11 @@ function PredictPlantLeaf() {
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    setPredictedImage(null); // Clear previous predicted image if a new one is selected
+    setPredictedImage(null);
   };
 
   const handleSubmit = async (e) => {
@@ -23,7 +27,7 @@ function PredictPlantLeaf() {
 
     try {
       const response = await axios.post(
-        "https://f702-36-80-138-225.ngrok-free.app/predict",
+        "https://7728-110-136-171-84.ngrok-free.app/predict",
         formData,
         {
           headers: {
@@ -33,7 +37,7 @@ function PredictPlantLeaf() {
       );
 
       setPrediction(response.data);
-      setPredictedImage(response.data.predicted_image); // Assuming the backend returns a URL or image data for the prediction image
+      setPredictedImage(response.data.predicted_image);
     } catch (error) {
       console.error(error);
       alert("Error during prediction");
@@ -42,32 +46,42 @@ function PredictPlantLeaf() {
     }
   };
 
+  const handleBack = () => {
+    // Navigate to the home path when the back button is clicked
+    navigate("/");
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 md:w-1/2 lg:w-1/3">
-        <h1 className="text-3xl font-semibold text-center text-blue-600 mb-6">
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <motion.div
+        className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 md:w-1/2 lg:w-1/3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-3xl font-semibold text-center text-primary mb-6">
           Plant Leaf Classifier
         </h1>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-text mb-2">
               Upload Leaf Image
             </label>
             <input
               type="file"
               onChange={handleImageChange}
-              className="block w-full p-3 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500"
+              className="block w-full p-3 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-primary"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-300"
+            className="w-full bg-primary text-white p-3 rounded-lg hover:bg-primary-dark transition duration-300"
           >
             {loading ? (
               <div className="flex justify-center">
-                <div className="w-6 h-6 border-4 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                <div className="w-6 h-6 border-4 border-t-4 border-primary border-solid rounded-full animate-spin"></div>
               </div>
             ) : (
               "Predict"
@@ -76,10 +90,9 @@ function PredictPlantLeaf() {
         </form>
 
         <div className="mt-6 grid grid-cols-2 gap-4 justify-center">
-          {/* Display uploaded image */}
           {image && (
             <div className="flex flex-col items-center">
-              <p className="text-lg font-medium text-gray-800 text-center mb-2">
+              <p className="text-lg font-medium text-text text-center mb-2">
                 Uploaded Image:
               </p>
               <div className="mt-4">
@@ -92,15 +105,14 @@ function PredictPlantLeaf() {
             </div>
           )}
 
-          {/* Display predicted image */}
           {predictedImage && (
             <div className="flex flex-col items-center">
-              <p className="text-lg font-medium text-gray-800 text-center mb-2">
+              <p className="text-lg font-medium text-text text-center mb-2">
                 Predicted Image:
               </p>
               <div className="mt-4">
                 <img
-                  src={predictedImage} // Use the returned prediction image URL
+                  src={predictedImage}
                   alt="Predicted Plant"
                   className="w-full h-auto rounded-lg shadow-md border-2 border-gray-300"
                 />
@@ -109,22 +121,30 @@ function PredictPlantLeaf() {
           )}
         </div>
 
-        {/* Display prediction result */}
         {prediction && (
           <div className="mt-6 text-center">
-            <p className="text-lg font-medium text-gray-800">
+            <p className="text-lg font-medium text-text">
               Prediction:{" "}
-              <span className="text-blue-600 font-bold">
+              <span className="text-primary font-bold">
                 {prediction.predicted_class}
               </span>
             </p>
-            {/* Optionally display confidence */}
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-text mt-2">
               Confidence: {prediction.confidence.toFixed(2)}%
             </p>
           </div>
         )}
-      </div>
+
+        {/* Back Button */}
+        <div className="mt-4">
+          <button
+            onClick={handleBack}
+            className="w-full bg-gray-200 text-gray-700 p-3 rounded-lg hover:bg-gray-300 transition duration-300"
+          >
+            Go Back
+          </button>
+        </div>
+      </motion.div>
     </div>
   );
 }

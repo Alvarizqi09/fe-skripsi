@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #ffd700; /* Kuning jagung */
+  --color-primary-light: #fff3b0; /* Kuning muda */
+  --color-primary-dark: #e6b800; /* Kuning tua */
+
+  --color-secondary: #228b22; /* Hijau daun */
+  --color-secondary-light: #32cd32; /* Hijau muda */
+  --color-secondary-dark: #006400; /* Hijau tua */
+
+  --color-background: #f7fafc; /* Warna background netral */
+  --color-text: #2d3748; /* Warna teks utama */
+  --color-text-light: #4a5568; /* Warna teks sekunder */
+}
