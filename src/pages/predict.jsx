@@ -37,62 +37,83 @@ function PredictForm() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <form onSubmit={handleSubmit} className="mb-6">
-        <input
-          type="file"
-          onChange={handleImageChange}
-          className="block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:rounded-md file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100"
-        />
-        <button
-          type="submit"
-          className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-        >
-          {loading ? "Predicting..." : "Predict"}
-        </button>
-      </form>
-
-      {loading && <p className="text-center text-gray-500">Loading...</p>}
-
-      {prediction && (
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+    <div className="flex flex-col h-screen">
+      <div className="flex-1 p-4 overflow-y-auto">
+        {/* Prediction Result */}
+        {prediction && (
           <motion.div
-            className="flex flex-col items-center space-y-4"
+            className="flex flex-col mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-semibold">Uploaded Image</h3>
-            <img
-              src={URL.createObjectURL(image)}
-              alt="Uploaded"
-              className="max-w-full max-h-64 object-contain rounded-lg shadow-md"
-            />
-          </motion.div>
+            <motion.div
+              className="flex flex-col items-end space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <h3 className="text-xl font-semibold text-[var(--color-text)]">
+                Uploaded Image
+              </h3>
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Uploaded"
+                className="max-w-full max-h-64 object-contain rounded-lg shadow-md"
+              />
+            </motion.div>
+            {/* Prediction result on left like chat bubble */}
+            <motion.div
+              className="flex flex-col items-start space-y-4 mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <h3 className="text-xl font-semibold text-[var(--color-text)]">
+                Prediction Result
+              </h3>
+              <div className="bg-white p-4 rounded-lg shadow-md w-full max-w-xs">
+                <h2 className="text-lg font-bold text-primary">
+                  {prediction.predicted_class}
+                </h2>
+                <p className="text-sm text-[var(--color-text-light)]">
+                  Confidence: {prediction.confidence.toFixed(2)}
+                </p>
+              </div>
+            </motion.div>
 
-          <motion.div
-            className="flex flex-col items-center space-y-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <h3 className="text-xl font-semibold">Prediction Result</h3>
-            <div className="bg-white p-4 rounded-lg shadow-md w-full max-w-xs">
-              <h2 className="text-lg font-bold">
-                {prediction.predicted_class}
-              </h2>
-              <p className="text-sm text-gray-500">
-                Confidence: {prediction.confidence.toFixed(2)}
-              </p>
-            </div>
+            {/* Uploaded image on right */}
           </motion.div>
-        </motion.div>
-      )}
+        )}
+
+        {/* Loading state */}
+        {loading && (
+          <div className="text-center text-[var(--color-text-light)]">
+            Loading...
+          </div>
+        )}
+      </div>
+
+      {/* Upload button at bottom */}
+      <div className="p-4 bg-[var(--color-secondary)] fixed bottom-0 left-0 w-full">
+        <form
+          onSubmit={handleSubmit}
+          className="flex justify-between items-center"
+        >
+          <input
+            type="file"
+            onChange={handleImageChange}
+            className="file:bg-[var(--color-primary-light)] file:text-[var(--color-primary)] file:py-2 file:px-4 file:border file:rounded-md file:text-sm text-[var(--color-text)]"
+          />
+          <button
+            type="submit"
+            className="flex items-center space-x-2 bg-[var(--color-primary)] text-white py-2 px-4 rounded-md hover:bg-[var(--color-primary-dark)] transition duration-300"
+            disabled={loading}
+          >
+            <span>{loading ? "Predicting..." : "Upload & Predict"}</span>
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
