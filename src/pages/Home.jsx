@@ -4,30 +4,27 @@ function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}
-      <nav className="bg-white shadow-lg">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-xl font-semibold text-primary">
-              Corn Disease Classification
-            </div>
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className="text-text hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-text hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
-              >
-                About
-              </Link>
-            </div>
-          </div>
+      <div className="navbar bg-base-100 shadow-sm">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl">Corn Leaf Classification</a>
         </div>
-      </nav>
-
+        <div className="flex-none">
+          <ul className="menu menu-horizontal px-1">
+            <Link
+              to="/"
+              className=" hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className=" hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+            >
+              About
+            </Link>
+          </ul>
+        </div>
+      </div>
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h1 className="text-4xl font-bold text-secondary mb-6">
