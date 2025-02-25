@@ -1,12 +1,14 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: lemonade --default;
+}
 
 @theme {
-  --color-primary: #ffd700; /* Kuning jagung */
+  --color-jagung: #934713; /* Kuning jagung */
   --color-primary-light: #fff3b0; /* Kuning muda */
   --color-primary-dark: #e6b800; /* Kuning tua */
 
-  --color-secondary: #228b22; /* Hijau daun */
+  --color-hijjau: #11643c; /* Hijau daun */
   --color-secondary-light: #32cd32; /* Hijau muda */
   --color-secondary-dark: #006400; /* Hijau tua */
 

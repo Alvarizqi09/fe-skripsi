@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PredictPlantLeaf from "./pages/predict";
-import Home from "./pages/home";
-import About from "./pages/about";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
   return (
