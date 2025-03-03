@@ -1,43 +1,42 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FaStar } from "react-icons/fa";
 
 function About() {
+  const diseases = [
+    {
+      id: "northern-leaf-blight",
+      title: "Northern Leaf Blight",
+      image: "/nothern-leaf.jpg",
+      type: "Fungal",
+      risk: "High",
+      description:
+        "Disebabkan jamur Exserohilum turcicum dengan gejala bercak memanjang berwarna coklat keabu-abuan.",
+      characteristic: "Penyebaran Cepat di Musim Hujan",
+    },
+    {
+      id: "gray-leaf-spot",
+      title: "Gray Leaf Spot",
+      image: "/gray-leaf.jpg",
+      type: "Fungal",
+      risk: "Moderate",
+      description:
+        "Jamur Cercospora zeae-maydis menyebabkan bercak kecil abu-abu yang menyebar dan membuat daun kering.",
+      characteristic: "Menyukai Kelembapan Tinggi",
+    },
+    {
+      id: "common-rust",
+      title: "Common Rust",
+      image: "/common-rust.jpg",
+      type: "Fungal",
+      risk: "Low",
+      description:
+        "Jamur Puccinia sorghi menimbulkan bintik oranye/coklat yang mengurangi kemampuan fotosintesis.",
+      characteristic: "Umum di Awal Musim Tanam",
+    },
+  ];
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* Navbar dengan efek glass */}
-      <nav className="sticky top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <Link
-              to="/"
-              className="text-2xl font-bold text-green-700 flex items-center"
-            >
-              🌽 Corn Classification
-            </Link>
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className="text-gray-600 hover:-translate-y-1 duration-300 hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-600 hover:-translate-y-1 duration-300 hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                About
-              </Link>
-              <Link
-                to="/predict"
-                className="text-gray-600 hover:-translate-y-1 duration-300  hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Predict
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0 }}
@@ -67,112 +66,46 @@ function About() {
       {/* Disease Cards Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {/* Northern Leaf Blight Card */}
-          <motion.div
-            whileHover={{ y: -10 }}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-          >
-            <img
-              src="/nothern-leaf.jpg"
-              alt="Northern Leaf Blight"
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="badge badge-error badge-lg">Fungal</div>
-                <div className="badge badge-warning badge-lg">High Risk</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                Northern Leaf Blight
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Disebabkan jamur Exserohilum turcicum dengan gejala bercak
-                memanjang berwarna coklat keabu-abuan.
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span>Penyebaran Cepat di Musim Hujan</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Gray Leaf Spot Card */}
-          <motion.div
-            whileHover={{ y: -10 }}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-          >
-            <img
-              src="/gray-leaf.jpg"
-              alt="Gray Leaf Spot"
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="badge badge-error badge-lg">Fungal</div>
-                <div className="badge badge-success badge-lg">
-                  Moderate Risk
+          {diseases.map((disease) => (
+            <Link to={`/disease/${disease.id}`} key={disease.id}>
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+              >
+                <img
+                  src={disease.image}
+                  alt={disease.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="badge badge-error badge-lg">
+                      {disease.type}
+                    </div>
+                    <div
+                      className={`badge ${
+                        disease.risk === "High"
+                          ? "badge-warning"
+                          : disease.risk === "Moderate"
+                          ? "badge-success"
+                          : "badge-info"
+                      } badge-lg`}
+                    >
+                      {disease.risk} Risk
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    {disease.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{disease.description}</p>
+                  <div className="flex items-center text-sm text-gray-500">
+                    <FaStar className="w-5 h-5 mr-2" />
+                    <span>{disease.characteristic}</span>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                Gray Leaf Spot
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Jamur Cercospora zeae-maydis menyebabkan bercak kecil abu-abu
-                yang menyebar dan membuat daun kering.
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span>Menyukai Kelembapan Tinggi</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Common Rust Card */}
-          <motion.div
-            whileHover={{ y: -10 }}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-          >
-            <img
-              src="/common-rust.jpg"
-              alt="Common Rust"
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="badge badge-error badge-lg">Fungal</div>
-                <div className="badge badge-info badge-lg">Low Risk</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                Common Rust
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Jamur Puccinia sorghi menimbulkan bintik oranye/coklat yang
-                mengurangi kemampuan fotosintesis.
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span>Umum di Awal Musim Tanam</span>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -240,13 +173,6 @@ function About() {
           </div>
         </motion.div>
       </div>
-
-      {/* Footer */}
-      <footer className="p-4 shadow-md text-center mt-20">
-        <p className="text-sm text-gray-600">
-          &copy; 2025 Plant Leaf Classifier | All rights reserved
-        </p>
-      </footer>
     </div>
   );
 }

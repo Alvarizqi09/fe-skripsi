@@ -4,40 +4,6 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 function Home() {
   return (
     <div className="min-h-screen">
-      {/* Navbar */}
-      <nav className="sticky top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <Link
-              to="/"
-              className="text-2xl font-bold text-green-700 duration-300 flex items-center"
-            >
-              🌽 Corn Classification
-            </Link>
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className="text-gray-600 hover:-translate-y-1 duration-300 hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-600 hover:-translate-y-1 duration-300  hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                About
-              </Link>
-              <Link
-                to="/predict"
-                className="text-gray-600 hover:-translate-y-1  hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Predict
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <div className="w-full mx-auto px-4 py-16 text-center bg-hijjau">
         <h1 className="text-4xl font-bold text-white mb-6">
@@ -134,12 +100,6 @@ function Home() {
           </div>
         </div>
       </motion.div>
-      {/* Footer */}
-      <footer className="p-4 shadow-md text-center mt-20">
-        <p className="text-sm text-gray-600">
-          &copy; 2025 Plant Leaf Classifier | All rights reserved
-        </p>
-      </footer>
     </div>
   );
 }

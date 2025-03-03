@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 function PredictForm() {
   const [image, setImage] = useState(null);
@@ -11,7 +10,7 @@ function PredictForm() {
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
-      setPrediction(null); // Reset prediction when new image is selected
+      setPrediction(null);
     }
   };
 
@@ -44,40 +43,6 @@ function PredictForm() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-gray-50">
-      {/* Modern Navbar */}
-      <nav className="sticky top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <Link
-              to="/"
-              className="text-2xl font-bold text-green-700 flex items-center"
-            >
-              🌽 Corn Classification
-            </Link>
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className="text-gray-600 hover:-translate-y-1 duration-300 hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-600 hover:-translate-y-1 duration-300  hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                About
-              </Link>
-              <Link
-                to="/predict"
-                className="text-gray-600 hover:-translate-y-1 duration-300 hover:text-green-700 px-3 py-2 text-sm font-medium transition-all"
-              >
-                Predict
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Chat-style Container */}
         <div className="bg-white rounded-2xl shadow-lg p-6 min-h-[600px] flex flex-col">
