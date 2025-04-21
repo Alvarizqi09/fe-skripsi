@@ -40,7 +40,6 @@ function Home() {
           ></path>
         </svg>
 
-        {/* Hero Image Positioned Absolutely with 3:2 Ratio and Rounded Corners */}
         <img
           src="/hero.png"
           alt="Hero"
