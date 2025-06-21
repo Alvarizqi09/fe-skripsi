@@ -3,7 +3,6 @@ import {
   FaChartLine,
   FaFilter,
   FaLayerGroup,
-  FaCode,
   FaBalanceScale,
 } from "react-icons/fa";
 
@@ -52,7 +51,7 @@ function MachineLearning() {
                 <div className="bg-green-50 p-4 rounded-lg border border-green-100">
                   <div className="flex items-center">
                     <div className="text-3xl font-bold text-green-700 mr-4">
-                      98.12%
+                      98.91%
                     </div>
                     <div>
                       <div className="font-medium">Akurasi Validasi</div>
@@ -78,7 +77,7 @@ function MachineLearning() {
                 <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
                   <div className="flex items-center">
                     <div className="text-3xl font-bold text-purple-700 mr-4">
-                      96.83%
+                      98.83%
                     </div>
                     <div>
                       <div className="font-medium">Akurasi Training</div>
@@ -113,9 +112,9 @@ function MachineLearning() {
                     </tr>
                     <tr>
                       <td className="py-2 px-4 border-b">Gray Leaf Spot</td>
-                      <td className="py-2 px-4 border-b">0.94</td>
-                      <td className="py-2 px-4 border-b">0.89</td>
-                      <td className="py-2 px-4 border-b">0.92</td>
+                      <td className="py-2 px-4 border-b">1.00</td>
+                      <td className="py-2 px-4 border-b">0.95</td>
+                      <td className="py-2 px-4 border-b">0.98</td>
                     </tr>
                     <tr>
                       <td className="py-2 px-4 border-b">Healthy</td>
@@ -127,15 +126,15 @@ function MachineLearning() {
                       <td className="py-2 px-4 border-b">
                         Northern Leaf Blight
                       </td>
-                      <td className="py-2 px-4 border-b">0.93</td>
                       <td className="py-2 px-4 border-b">0.96</td>
-                      <td className="py-2 px-4 border-b">0.95</td>
+                      <td className="py-2 px-4 border-b">1.00</td>
+                      <td className="py-2 px-4 border-b">0.98</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <p className="text-sm text-gray-500 mt-2">
-                Macro Avg F1-Score: 0.97 | Weighted Avg F1-Score: 0.98
+                Macro Avg F1-Score: 0.99 | Weighted Avg F1-Score: 0.99
               </p>
             </div>
           </div>
@@ -274,8 +273,8 @@ function MachineLearning() {
               <h4 className="font-semibold mb-2">Struktur Tambahan:</h4>
               <ul className="space-y-2">
                 <li>Global Average Pooling</li>
-                <li>Dropout (0.7)</li>
-                <li>Dense Layer (256 units, ReLU, L2 regularization 0.06)</li>
+                <li>Dropout (0.4)</li>
+                <li>Dense Layer (512 units, ReLU, L2 regularization 0.03)</li>
                 <li>Output Layer (4 units, Softmax)</li>
               </ul>
             </div>
@@ -336,7 +335,7 @@ function MachineLearning() {
               </h3>
               <div className="bg-gray-100 rounded-xl p-4 flex justify-center">
                 <img
-                  src="/conf.jpg"
+                  src="/confu.jpg"
                   alt="Confusion Matrix"
                   className="max-w-full h-auto"
                 />
@@ -352,7 +351,7 @@ function MachineLearning() {
               </h3>
               <div className="bg-gray-100 rounded-xl p-4 flex justify-center">
                 <img
-                  src="/diagram.jpg"
+                  src="/chart.jpg"
                   alt="Training History"
                   className="max-w-full h-auto"
                 />
@@ -364,9 +363,12 @@ function MachineLearning() {
           </div>
 
           <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              Class Weight
-            </h3>
+            <div className="flex items-center gap-4">
+              <FaBalanceScale className="text-green-600 text-2xl mb-4" />
+              <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                Class Weight
+              </h3>
+            </div>
             <p className="text-gray-700 mb-4">
               Untuk mengatasi data imbalance, digunakan class weighting dengan
               konfigurasi berikut:
@@ -374,19 +376,19 @@ function MachineLearning() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white border rounded-lg p-4 text-center">
                 <div className="font-bold text-gray-800">Common Rust</div>
-                <div className="text-blue-600 font-bold">1.20</div>
+                <div className="text-blue-600 font-bold">0.81</div>
               </div>
               <div className="bg-white border rounded-lg p-4 text-center">
                 <div className="font-bold text-gray-800">Gray Leaf Spot</div>
-                <div className="text-blue-600 font-bold">1.42</div>
+                <div className="text-blue-600 font-bold">1.88</div>
               </div>
               <div className="bg-white border rounded-lg p-4 text-center">
                 <div className="font-bold text-gray-800">Healthy</div>
-                <div className="text-blue-600 font-bold">1.03</div>
+                <div className="text-blue-600 font-bold">0.83</div>
               </div>
               <div className="bg-white border rounded-lg p-4 text-center">
                 <div className="font-bold text-gray-800">N. Leaf Blight</div>
-                <div className="text-blue-600 font-bold">1.52</div>
+                <div className="text-blue-600 font-bold">0.98</div>
               </div>
             </div>
           </div>
